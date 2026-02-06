@@ -30,9 +30,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   }
 
-  // 🔹 POST – dodawanie filmu (TYLKO ADMIN)
+  // 🔹 POST – dodawanie filmu (TYLKO MODERATOR)
   if (req.method === "POST") {
-    if (session.user.role !== "ADMIN") {
+    if (session.user.role !== "MODERATOR") {
       return res.status(403).json({ error: "Nie masz uprawnień" });
     }
 

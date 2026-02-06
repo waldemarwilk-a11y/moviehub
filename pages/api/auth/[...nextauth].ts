@@ -41,24 +41,48 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Hasło", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null;
+        try {
+          if (!credentials?.email || !credentials?.password) {
+            console.warn("[AUTH] Próba logowania bez kompletnych danych");
+            return null;
+          }
 
-        const result = await pool.query(
-          "SELECT id, email, password, role FROM users WHERE email = $1",
-          [credentials.email]
-        );
+          const result = await pool.query(
+            "SELECT id, email, password, role FROM users WHERE email = $1",
+            [credentials.email]
+          );
 
-        if (result.rows.length === 0) return null;
+          if (result.rows.length === 0) {
+            console.warn("[AUTH] Nieudane logowanie – brak użytkownika", {
+              email: credentials.email,
+            });
+            return null;
+          }
 
-        const user = result.rows[0];
-        const isValid = await bcrypt.compare(credentials.password, user.password);
-        if (!isValid) return null;
+          const user = result.rows[0];
+          const isValid = await bcrypt.compare(credentials.password, user.password);
 
-        return {
-          id: user.id.toString(),
-          email: user.email,
-          role: user.role,
-        };
+          if (!isValid) {
+            console.warn("[AUTH] Nieudane logowanie – błędne hasło", {
+              email: credentials.email,
+            });
+            return null;
+          }
+
+          console.info("[AUTH] Poprawne logowanie", {
+            userId: user.id,
+            role: user.role,
+          });
+
+          return {
+            id: user.id.toString(),
+            email: user.email,
+            role: user.role,
+          };
+        } catch (err) {
+          console.error("[AUTH] Błąd podczas logowania", err);
+          return null;
+        }
       },
     }),
   ],

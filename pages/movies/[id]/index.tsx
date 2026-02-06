@@ -131,7 +131,7 @@ export default function MovieDetails({
     }
   };
 
-  // ================= FILM (ADMIN) =================
+  // ================= FILM (MODERATOR) =================
   const handleSaveMovie = async () => {
     try {
       const res = await fetch(`/api/movies/${movie.id}`, {
@@ -179,7 +179,7 @@ export default function MovieDetails({
         </div>
       )}
 
-      {user?.role === "ADMIN" && (
+      {user?.role === "MODERATOR" && (
         <div style={{ marginBottom: 20 }}>
           <button onClick={() => setIsEditingMovie(true)} style={{ marginRight: 8 }}>Edytuj film</button>
           <button onClick={handleDeleteMovie}>Usuń film</button>
@@ -215,7 +215,7 @@ export default function MovieDetails({
             <div style={{ fontSize: 12, color: "#555", marginTop: 3 }}>
               Autor: {r.user_email} ({new Date(r.created_at).toLocaleString()})
             </div>
-            {user && (user.role === "ADMIN" || user.id === r.user_id.toString()) && (
+            {user && (user.role === "MODERATOR" || user.id === r.user_id.toString()) && (
               <div style={{ marginTop: 5 }}>
                 <button onClick={() => { setEditingReviewId(r.id); setEditRating(r.rating); setEditComment(r.comment); }} style={{ marginRight: 5 }}>Edytuj</button>
                 <button onClick={() => handleDeleteReview(r.id)}>Usuń</button>

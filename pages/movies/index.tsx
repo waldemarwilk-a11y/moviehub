@@ -16,7 +16,7 @@ type Props = {
 };
 
 export default function MoviesPage({ movies, userRole }: Props) {
-  const isAdmin = userRole === "ADMIN";
+  const isModerator = userRole === "MODERATOR";
 
   return (
     <div style={{
@@ -27,7 +27,7 @@ export default function MoviesPage({ movies, userRole }: Props) {
     }}>
       <h1 style={{ marginBottom: 20, textAlign: "center" }}>🎬 Lista filmów</h1>
 
-      {isAdmin && (
+      {isModerator && (
         <div style={{ textAlign: "center", marginBottom: 30 }}>
           <Link href="/movies/add">
             <button style={{

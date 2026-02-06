@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // 🗑 DELETE
     if (req.method === "DELETE") {
-      if (user.role !== "ADMIN" && user.id !== review.user_id.toString()) {
+      if (user.role !== "MODERATOR" && user.id !== review.user_id.toString()) {
         return res.status(403).json({ error: "Brak uprawnień" });
       }
 
@@ -70,7 +70,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ error: "Komentarz jest za długi (max 500 znaków)" });
       }
 
-      if (user.role !== "ADMIN" && user.id !== review.user_id.toString()) {
+      if (user.role !== "MODERATOR" && user.id !== review.user_id.toString()) {
         return res.status(403).json({ error: "Brak uprawnień" });
       }
 

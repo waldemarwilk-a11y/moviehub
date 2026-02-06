@@ -17,8 +17,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(401).json({ error: "Nie jesteś zalogowany" });
   }
 
-  if (session.user.role !== "ADMIN") {
-    return res.status(403).json({ error: "Brak uprawnień administratora" });
+  if (session.user.role !== "MODERATOR") {
+    return res.status(403).json({ error: "Brak uprawnień moderatora" });
   }
 
   const movieId = req.query.id;

@@ -15,7 +15,7 @@ export default function AddMovie() {
   const [loading, setLoading] = useState(false);
 
   if (status === "loading") return <p>Ładowanie...</p>;
-  if (!session || session.user.role !== "ADMIN") return <p>Nie masz uprawnień.</p>;
+  if (!session || session.user.role !== "MODERATOR") return <p>Nie masz uprawnień.</p>;
 
   const handleSubmit = async () => {
     if (!title || !description || !genre) {
