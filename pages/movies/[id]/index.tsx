@@ -224,6 +224,52 @@ export default function MovieDetails({
           </div>
         ))
       )}
+      {user && editingReviewId !== null && (
+        <div
+          style={{
+            marginTop: 20,
+            padding: 10,
+            border: "1px solid #aaa",
+            borderRadius: 6,
+            background: "#fffbe6",
+          }}
+        >
+          <h3>Edytuj opinię</h3>
+
+          <label>
+            Ocena:{" "}
+            <select
+              value={editRating}
+              onChange={(e) => setEditRating(Number(e.target.value))}
+            >
+              {[1, 2, 3, 4, 5].map((n) => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <br />
+
+          <textarea
+            style={{ width: "100%", marginTop: 5, marginBottom: 5 }}
+            value={editComment}
+            onChange={(e) => setEditComment(e.target.value)}
+            placeholder="Edytuj komentarz"
+          />
+
+          <br />
+
+          <button onClick={handleSaveEdit} style={{ marginRight: 5 }}>
+            Zapisz zmiany
+          </button>
+
+          <button onClick={() => setEditingReviewId(null)}>
+            Anuluj
+          </button>
+        </div>
+      )}
 
       {user && editingReviewId === null && (
         <div style={{ marginTop: 20, padding: 10, border: "1px solid #ddd", borderRadius: 6, background: "#f9f9f9" }}>
