@@ -16,7 +16,6 @@ The application was developed as an educational project demonstrating practical 
 
 
 <img width="935" height="693" alt="image" src="https://github.com/user-attachments/assets/dc5ea097-4303-42c8-b20f-c806b8badd6c" />
-<img width="935" height="693" alt="image" src="https://github.com/user-attachments/assets/dc5ea097-4303-42c8-b20f-c806b8badd6c" />
 
 
 
