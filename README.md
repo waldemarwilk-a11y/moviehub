@@ -77,17 +77,24 @@ movies (1) -> (N) reviews
 
 Project Structure
 
-/pages
-  /api
-    /auth
-    /movies
-    /reviews
-  /movies
-    [id]
-/lib
-  db.ts
-/public
-/styles
+moviehub/
+│
+├── pages/
+│   ├── api/
+│   │   ├── auth/
+│   │   ├── movies/
+│   │   └── reviews/
+│   └── index.tsx
+│
+├── components/
+│   └── AuthBar.tsx
+│
+├── lib/
+│   └── db.js
+│
+├── README.md
+└── package.json
+
 
 
 Authentication and Authorization
