@@ -1,36 +1,167 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Movie Reviews Web Application
 
-## Getting Started
+Project Description
 
-First, run the development server:
+This project is a full-stack web application for managing movies and user reviews.
+It allows registered users to browse movies, add ratings and reviews, and manage their own content.
+Moderators have additional permissions to edit and delete movies and reviews.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The application was developed as an educational project demonstrating practical knowledge of:
+- full-stack web development
+- relational databases
+- authentication and authorization
+- REST API design
+- server-side rendering
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<img width="935" height="693" alt="image" src="https://github.com/user-attachments/assets/dc5ea097-4303-42c8-b20f-c806b8badd6c" />
+<img width="935" height="693" alt="image" src="https://github.com/user-attachments/assets/dc5ea097-4303-42c8-b20f-c806b8badd6c" />
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Features
 
-## Deploy on Vercel
+User:
+- User registration and authentication
+- Secure login and logout
+- Adding movie reviews (rating and comment)
+- Editing and deleting own reviews
+- Viewing average movie ratings
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Moderator:
+- All user features
+- Editing movie details
+- Deleting movies
+- Editing and deleting any review
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+General:
+- Server-side rendering (SSR)
+- REST API architecture
+- Role-based access control
+- Relational database with foreign keys
+
+
+Technology Stack
+
+Frontend:
+- Next.js (React)
+- TypeScript
+- Server-side rendering (getServerSideProps)
+
+Backend:
+- Next.js API Routes
+- NextAuth.js
+- Node.js
+
+Database:
+- PostgreSQL
+- Relational database
+- Foreign key constraints
+
+
+Database Schema
+
+The database consists of three relational tables:
+- users
+- movies
+- reviews
+
+Relationships:
+- One user can create many reviews
+- One movie can have many reviews
+
+users (1) -> (N) reviews
+movies (1) -> (N) reviews
+
+
+Project Structure
+
+/pages
+  /api
+    /auth
+    /movies
+    /reviews
+  /movies
+    [id]
+/lib
+  db.ts
+/public
+/styles
+
+
+Authentication and Authorization
+
+Authentication is implemented using NextAuth.js with session-based authorization.
+
+Rules:
+- Only authenticated users can add reviews
+- Users can edit and delete only their own reviews
+- Moderators can edit and delete any review
+- Moderators can edit and delete movies
+- Authorization is enforced on both frontend and backend
+
+
+API Endpoints
+
+Reviews:
+- POST /api/reviews
+- PUT /api/reviews/{id}
+- DELETE /api/reviews/{id}
+
+Movies:
+- PUT /api/movies/{id} (moderator only)
+- DELETE /api/movies/{id} (moderator only)
+
+
+Installation and Setup
+
+Requirements:
+- Node.js
+- PostgreSQL
+- npm
+
+Steps:
+1. Clone the repository:
+   git clone https://github.com/your-username/moviehub.git
+
+2. Install dependencies:
+   npm install
+
+3. Configure environment variables:
+   - database connection
+   - NextAuth configuration
+
+4. Run the development server:
+   npm run dev
+
+5. Open in browser:
+   http://localhost:3000
+
+
+Security
+
+- Session-based authentication
+- Role-based authorization
+- Input validation
+- Parameterized SQL queries
+- OWASP security guidelines applied
+
+
+Purpose of the Project
+
+This project was created for academic purposes.
+It demonstrates practical implementation of a full-stack web application using modern technologies,
+a relational database, and secure authentication mechanisms.
+
+The repository is intended for academic evaluation and exchange programs such as Erasmus.
+
+
+Author
+
+Project developed by:
+Waldemar Wilk
+
+
+
