@@ -130,7 +130,7 @@ Requirements:
 
 Steps:
 1. Clone the repository:
-   git clone https://github.com/your-username/moviehub.git
+   git clone https://github.com/waldemarwilk-a11y/moviehub.git
 
 2. Install dependencies:
    npm install
